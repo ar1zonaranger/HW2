@@ -31,7 +31,7 @@ class ShoppingList:
     def __add__(self, other):
         if not isinstance(other, ShoppingList):
             raise ValueError("Объект должен быть экземпляром класса ShoppingList")
-        new_list = ShoppingList([])
+        new_list = ShoppingList()
         for ingredient, title in self._items+other._items:
             new_list._items.append((Ingredient(ingredient.name, ingredient.quantity, ingredient.unit), title))
         return new_list
