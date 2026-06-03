@@ -29,3 +29,20 @@ class Recipe:
     
     def __str__(self):
         return f"{self.title}:\n" + "\n".join(str(i) for i in self.ingredients)
+
+
+class DietaryRecipe(Recipe):
+    def __init__(self, title, diet_type, ingredients=None):
+        if ingredients is None:
+            ingredients = []
+        super().__init__(title, ingredients)
+        self.diet_type = diet_type
+
+    def scale(self, ratio: float):
+        if not self.is_valid_ratio(ratio):
+            raise ValueError("Коэффициент должен быть положительным")
+        newRecipe = super().scale(ratio)
+        return DietaryRecipe(self.title, self.diet_type, newRecipe.ingredients)
+    
+    def __str__(self):
+        return f"[{self.diet_type}] {self.title}:\n" + "\n".join(str(i) for i in self.ingredients)
