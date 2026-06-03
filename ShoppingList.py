@@ -2,7 +2,7 @@ import Ingredient
 import Recipe
 
 class ShoppingList:
-    def __init__(self, recipes):
+    def __init__(self):
         self._items = []
 
     def add_recipe(self, recipe: Recipe, portions: float):
