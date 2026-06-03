@@ -11,7 +11,7 @@ class Ingredient:
     @property.setter
     def quantity(self, value):
         if value <= 0:
-            raise ValueError("Количество должно быть положительным.")
+            raise ValueError("Количество должно быть положительным")
         self.quantity = float(value)
 
     def __str__(self):
