@@ -4,30 +4,20 @@ import Recipe
 class ShoppingList:
     def __init__(self, recipes):
         self._items = []
-        for recipe in recipes:
-            for ingredient in recipe.ingredients:
-                self._items.append((ingredient, recipe.title))
 
     def add_recipe(self, recipe: Recipe, portions: float):
-        if portions<=0:
+        if portions <= 0:
             raise ValueError("Количество порций должно быть положительным")
-        newRecipe = recipe.scale(portions)
-        if recipe.title in [i[1] for i in self._items]:
-            for item in self._items:
-                if item[1] == recipe.title:
-                    item[0].quantity += newRecipe.ingredients[0].quantity
-            return
-        for ingredient in newRecipe.ingredients:
+        scaled = recipe.scale(portions)
+        for ingredient in scaled.ingredients:
             self._items.append((ingredient, recipe.title))
     
     def remove_recipe(self, title: str):
-        for i in self.items:
-            if i[1] == title:
-                self._items.remove(i)
+        self._items = [i for i in self._items if i[1] != title]
 
     def get_list(self):
         shopping_list = {}
-        for item in self.items:
+        for item in self._items:
             if (item[0].name, item[0].unit) in shopping_list:
                 shopping_list[(item[0].name, item[0].unit)] += item[0].quantity
             else:
