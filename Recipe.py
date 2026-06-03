@@ -1,4 +1,4 @@
-import Ingredient
+from Ingredient import Ingredient
 
 class Recipe:
     def __init__(self, title, ingredients):
