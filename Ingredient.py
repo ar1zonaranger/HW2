@@ -6,13 +6,13 @@ class Ingredient:
 
     @property
     def quantity(self):
-        return self.quantity
+        return self._quantity
     
     @property.setter
     def quantity(self, value):
         if value <= 0:
             raise ValueError("Количество должно быть положительным")
-        self.quantity = float(value)
+        self._quantity = float(value)
 
     def __str__(self):
         return f"{self.name}: {self.quantity} {self.unit}"
